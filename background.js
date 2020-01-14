@@ -3,8 +3,9 @@ function defaultCB(url, line) {
 }
 
 function registerLoader() {
-  chrome.storage.sync.get({ pattern: '/^file:\\/\\/(.+?\\.(jsx?|s?css)(?:.+)?)$/' }, function(items) {
-    var pattern = items.pattern;
+  chrome.storage.sync.get({ pattern: '' }, function(items) {
+    var defaultPattern = '/^file:\\/\\/(.+?\\.(jsx?|s?css)(?:.+)?)$/';
+    const pattern = items.pattern.trim().length > 0 ? items.pattern : defaultPattern;
     var regex = new RegExp(pattern);
 
     function lawdFile(e, line) {

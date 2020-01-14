@@ -12,12 +12,13 @@ function save_options() {
     });
 }
 
-// Restores select box and checkbox state using the preferences
-// stored in chrome.storage.
+// retrieve values stored in chrome.storage.
 function restore_options() {
-    // Use default value color = 'red' and likesColor = true.
-    chrome.storage.sync.get({ pattern: '/^file:\\/\\/(.+?\\.(jsx?|s?css)(?:.+)?)$/' }, function(items) {
-        document.getElementById('regex-pattern').value = items.pattern;
+    var defaultPattern = '/^file:\\/\\/(.+?\\.(jsx?|s?css)(?:.+)?)$/';
+
+    chrome.storage.sync.get({ pattern: '' }, function(items) {
+        const pattern = items.pattern.trim().length > 0 ? items.pattern : defaultPattern;
+        document.getElementById('regex-pattern').value = pattern;
     });
 }
 document.addEventListener('DOMContentLoaded', restore_options);
