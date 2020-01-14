@@ -4,7 +4,12 @@
   "description": "Extends the Developer Tools, clicking a resource will open it in your IDE.",
   "devtools_page": "devtools.html",
   "permissions": [
-    "http://*/*"
+    "http://*/*",
+    "storage"
   ],
-  "manifest_version": 2
+  "manifest_version": 2,
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  }
 }
